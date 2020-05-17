@@ -1,0 +1,27 @@
+<app-subheader subtitle="Subjects" [backButton]=false></app-subheader>
+
+<div class="results">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. taxation">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="subjects" class="mat-elevation-z8">
+    <!-- Code Column-->
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-button routerLink="/courses/{{element.code}}">{{element.code}}</a>
+      </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
